@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbe1dbf4bf98be47bb6356f09b4f194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeColor: Blue
 --- !u!1 &108412
 GameObject:
   m_ObjectHideFlags: 0

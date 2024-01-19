@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9340da57ba5132478d5e6d4c46531a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StackAreaList: []
 --- !u!1 &84677177
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +631,7 @@ GameObject:
   - component: {fileID: 305477106}
   - component: {fileID: 305477109}
   m_Layer: 2
-  m_Name: Stack3
+  m_Name: StackArray_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -644,7 +645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305477104}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.5, z: 0}
+  m_LocalPosition: {x: 2, y: 0.13, z: 0}
   m_LocalScale: {x: 1.5, y: 7, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -727,6 +728,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StackIndex: 3
+  isFilledWithSameColor: 0
+  stackList: []
+  cubeCount: 0
 --- !u!1 &467991208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1339,7 @@ GameObject:
   - component: {fileID: 848562064}
   - component: {fileID: 848562067}
   m_Layer: 2
-  m_Name: Stack1
+  m_Name: StackArray_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1349,7 +1353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848562062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.5, z: 0}
+  m_LocalPosition: {x: -2, y: 0.13, z: 0}
   m_LocalScale: {x: 1.5, y: 7, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1432,6 +1436,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StackIndex: 1
+  isFilledWithSameColor: 0
+  stackList: []
+  cubeCount: 0
 --- !u!1 &872716516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1453,7 @@ GameObject:
   - component: {fileID: 872716518}
   - component: {fileID: 872716521}
   m_Layer: 2
-  m_Name: Stack2
+  m_Name: StackArray_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,7 +1467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872716516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.13, z: 0}
   m_LocalScale: {x: 1.5, y: 7, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1543,6 +1550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StackIndex: 2
+  isFilledWithSameColor: 0
+  stackList: []
+  cubeCount: 0
 --- !u!1 &1132883890
 GameObject:
   m_ObjectHideFlags: 0
