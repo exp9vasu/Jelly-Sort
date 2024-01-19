@@ -7,12 +7,25 @@
 
 using UnityEngine;
 using System.Collections;
+using Lean.Touch;
 
 namespace JellyCube
 {
     public class RubberEffect : MonoBehaviour
     {
+        
+
         public RubberType m_Presets;
+
+        //private void OnMouseDrag()
+        //{
+        //    GetComponent<LeanDragTranslateRigidbody>().enabled = true;
+        //}
+
+        //private void OnMouseUp()
+        //{
+        //    GetComponent<LeanDragTranslateRigidbody>().enabled = false;
+        //}
 
         public enum RubberType
         {
