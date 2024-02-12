@@ -10,6 +10,7 @@ public class CubeScript : MonoBehaviour
     public static event CubeExitedStackEvent OnCubeExitedStack;
 
     public string cubeColor; // String identifier for the cube color
+    public int CubeIndex;
 
     private void OnTriggerEnter(Collider other)
     {
