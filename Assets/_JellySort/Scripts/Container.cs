@@ -63,7 +63,9 @@ public class Container : MonoBehaviour
 
             LevelManager.instance.SelectedCube = ContainerStack[ContainerStack.Count - 1].gameObject;
             selectedCube = ContainerStack[ContainerStack.Count - 1].gameObject;
-            ContainerStack[ContainerStack.Count - 1].transform.GetComponent<Rigidbody>().isKinematic = true;
+            //ContainerStack[ContainerStack.Count - 1].transform.GetComponent<Rigidbody>().isKinematic = true;
+            selectedCube.transform.GetComponent<Rigidbody>().isKinematic = true;
+
             LeanTween.move(ContainerStack[ContainerStack.Count - 1], new Vector3(selectedCube.transform.position.x, 
                 /*transform.position.y + 5*/4, selectedCube.transform.position.z), 1);
         }
@@ -111,7 +113,8 @@ public class Container : MonoBehaviour
                 //    selectedCube.gameObject, new Vector3(selectedCube.transform.position.x, /*transform.position.y+5*/4, selectedCube.transform.position.z), 1);
                 //    //.setOnComplete(FinalCubeDeposit);
 
-                ContainerStack[ContainerStack.Count - 1].transform.GetComponent<Rigidbody>().isKinematic = false;
+                //ContainerStack[ContainerStack.Count - 1].transform.GetComponent<Rigidbody>().isKinematic = false;
+                selectedCube.transform.GetComponent<Rigidbody>().isKinematic = false;
                 LevelManager.instance.SelectedCube = null;
                 selectedCube = null;
                 LevelManager.instance.SelectedContainer = null;

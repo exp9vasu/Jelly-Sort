@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     public GameObject SelectedContainer;
     public GameObject SelectedCube;
     //public List<GameObject> ContainerSequence = new List<GameObject>();
-    public int CurrentLevel = 1;
+    public int CurrentLevel = 0;
     public List<GameObject> ContainerList = new List<GameObject>();
 
     private void Awake()
@@ -33,6 +33,11 @@ public class LevelManager : MonoBehaviour
         LoadLevel(CurrentLevel);
     }
 
+    float spacing = 2f;
+    float zSpacing = 4f;
+    float xPos;
+    float zPos;
+
     // Method to load and generate levels
     public void LoadLevel(int levelIndex)
     {
@@ -41,15 +46,14 @@ public class LevelManager : MonoBehaviour
         int outerCount = level.LevelInfo.Count;
         containerCount = outerCount;
 
-        float spacing = 2f;
-        float zSpacing = 4f;
+        
 
         // Generate containers based on level data
         for (int i = 0; i < outerCount; i++)
         {
-            float xPos = (outerCount - 1) * -spacing / 2 + i * spacing;
-            float zPos;
+            xPos = (outerCount - 1) * -spacing / 2 + i * spacing;
 
+            //SpawnBoxes(levels[CurrentLevel].m, levels[CurrentLevel].n);
 
             if (i > 2)
             {
@@ -84,32 +88,79 @@ public class LevelManager : MonoBehaviour
 
 
     }
+    public void SpawnBoxes(int m, int n)
+    {
+        float spacing = 2f; // Spacing between boxes along the x-axis
+        float height = 0f; // Height difference between rows along the y-axis
+        float depth = 2f; // Spacing between boxes along the z-axis
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                float x = spacing * j; // Calculate x-coordinate
+                float y = height * i; // Calculate y-coordinate
+                float z = depth * i; // Calculate z-coordinate
+
+                xPos = x;
+                zPos = z;
+
+                // Spawn box at calculated coordinates
+                //Instantiate(boxPrefab, new Vector3(x, y, z), Quaternion.identity);
+            }
+        }
+    }
+    public List<GameObject> newList;
 
     public void CheckGameState()
     {
-        if (ContainerList.Count == 0)
+        //if (ContainerList.Count == 0)
+        //{
+        //    return;
+        //}
+
+        {
+            foreach (GameObject element in ContainerList)
+            {
+                if (element.GetComponent<Container>().ContainerStack.Count > 0 && !newList.Contains(element))
+                {
+                    newList.Add(element);
+                }
+                else
+                if (element.GetComponent<Container>().ContainerStack.Count == 0 && newList.Contains(element))
+                {
+                    newList.Remove(element);
+                }
+            }
+
+            CheckIsFilledSame(newList);
+        }
+
+    }
+
+    void CheckIsFilledSame(List<GameObject> elements)
+    {
+        // If the list is empty, return
+        if (elements.Count == 0)
         {
             return;
         }
 
+        // Check if all elements have the same isFilledSame boolean property
+        foreach (GameObject element in elements)
         {
-            
-            // Get the script component of the first element
-            var firstScript = ContainerList[0].GetComponent<Container>();
+            // Get the script component attached to the element
+            Container script = element.GetComponent<Container>();
 
-            // Check if all elements have the same script attached
-            if (ContainerList.All(ContainerList => ContainerList.GetComponent<Container>() == firstScript))
+            // If the script is null or the isFilledSame property is false, return
+            if (script == null || !script.FilledWithSame)
             {
-                // If all elements have the same script, check if SameColorFilled is true for all of them
-                if(ContainerList.All(ContainerList => ContainerList.GetComponent<Container>().FilledWithSame))
-                {   
-                    print("Game Over!");
-                }
+                return;
             }
-
-            // If not all elements have the same script attached, return false
-            //return false;
         }
 
+        // If all elements have isFilledSame set to true, print "Game Over!"
+        Debug.Log("Game Over!");
     }
+
 }
