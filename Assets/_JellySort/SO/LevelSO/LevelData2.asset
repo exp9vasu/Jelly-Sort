@@ -18,6 +18,7 @@ MonoBehaviour:
   - list:
     - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
     - {fileID: 6905998299435438118, guid: 7388f422ded3ebe40991d518f2320c4d, type: 3}
+    - {fileID: 6905998299435438118, guid: 7388f422ded3ebe40991d518f2320c4d, type: 3}
   - list:
     - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
     - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}

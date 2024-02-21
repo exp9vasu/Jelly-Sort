@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class LevelManager : MonoBehaviour
 
     public GameObject SelectedContainer;
     public GameObject SelectedCube;
-    public List<GameObject> ContainerSequence = new List<GameObject>();
+    //public List<GameObject> ContainerSequence = new List<GameObject>();
+    public int CurrentLevel = 1;
+    public List<GameObject> ContainerList = new List<GameObject>();
 
     private void Awake()
     {
@@ -27,7 +30,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        LoadLevel(1);
+        LoadLevel(CurrentLevel);
     }
 
     // Method to load and generate levels
@@ -58,6 +61,7 @@ public class LevelManager : MonoBehaviour
             }
 
             GameObject containerObject = Instantiate(containerPrefab, new Vector3(xPos,0,zPos), Quaternion.identity, containerParent.transform);
+            ContainerList.Add(containerObject);
 
             //for (int j = 0; j < outerCount; j++)
             {
@@ -68,6 +72,7 @@ public class LevelManager : MonoBehaviour
                 {
                     //GameObject obj = wrapper.list[j];
                     GameObject obj = Instantiate(wrapper.list[j], new Vector3(xPos, 2 * (j+1), zPos), Quaternion.identity, containerObject.transform);
+                    //ContainerList.Add(obj);
                     obj.transform.localScale = wrapper.list[j].transform.localScale;
 
                 }
@@ -77,6 +82,34 @@ public class LevelManager : MonoBehaviour
             //container.maxCapacity = level.maxCapacityPerContainer;
         }
 
+
+    }
+
+    public void CheckGameState()
+    {
+        if (ContainerList.Count == 0)
+        {
+            return;
+        }
+
+        {
+            
+            // Get the script component of the first element
+            var firstScript = ContainerList[0].GetComponent<Container>();
+
+            // Check if all elements have the same script attached
+            if (ContainerList.All(ContainerList => ContainerList.GetComponent<Container>() == firstScript))
+            {
+                // If all elements have the same script, check if SameColorFilled is true for all of them
+                if(ContainerList.All(ContainerList => ContainerList.GetComponent<Container>().FilledWithSame))
+                {   
+                    print("Game Over!");
+                }
+            }
+
+            // If not all elements have the same script attached, return false
+            //return false;
+        }
 
     }
 }
