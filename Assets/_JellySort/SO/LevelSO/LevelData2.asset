@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCapacityPerContainer: 3
   numberOfContainers: 0
+  m: 3
+  n: 0
+  o: 0
   LevelInfo:
   - list:
     - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}

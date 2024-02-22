@@ -15,7 +15,7 @@ public class LevelData : ScriptableObject
     public int maxCapacityPerContainer;
     public int numberOfContainers;
 
-    public int m, n;
+    public int m, n, o;
 
     public List<ListWrapper<GameObject>> LevelInfo = new List<ListWrapper<GameObject>>(); 
 

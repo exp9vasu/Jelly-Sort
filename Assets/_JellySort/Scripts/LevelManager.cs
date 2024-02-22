@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
     }
 
     float spacing = 2f;
-    float zSpacing = 4f;
+    int zSpacing = 6;
     float xPos;
     float zPos;
 
@@ -42,29 +42,38 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(int levelIndex)
     {
         LevelData level = levels[levelIndex];
-
         int outerCount = level.LevelInfo.Count;
         containerCount = outerCount;
 
+        int m = levels[CurrentLevel].m;
+        int n = levels[CurrentLevel].n;
+        int o = levels[CurrentLevel].o;
+
         
+        LevelRowGenerator(0, m, levelIndex, -4-zSpacing);
+        LevelRowGenerator(m, m+n, levelIndex, -4);
+        LevelRowGenerator(m+n, m+n+o, levelIndex, -4+zSpacing);
+
+    }
+
+    public void LevelRowGenerator(int start, int row, int levelIndex, int ZPos)
+    {
+
+        LevelData level = levels[levelIndex];
+
 
         // Generate containers based on level data
-        for (int i = 0; i < outerCount; i++)
+        for (int i = start; i < row; i++)
         {
-            xPos = (outerCount - 1) * -spacing / 2 + i * spacing;
+            xPos = ((row + start) - 1) * -spacing / 2 + i * spacing;
 
             //SpawnBoxes(levels[CurrentLevel].m, levels[CurrentLevel].n);
 
-            if (i > 2)
-            {
-                zPos = 0;
-            }
-            else
-            {
-                zPos = -8;
-            }
+            zPos = ZPos;
 
-            GameObject containerObject = Instantiate(containerPrefab, new Vector3(xPos,0,zPos), Quaternion.identity, containerParent.transform);
+            //zPos = ((row + start) - 1) * -zSpacing / 2 + i * zSpacing;
+
+            GameObject containerObject = Instantiate(containerPrefab, new Vector3(xPos, 0, zPos), Quaternion.identity, containerParent.transform);
             ContainerList.Add(containerObject);
 
             //for (int j = 0; j < outerCount; j++)
@@ -75,7 +84,7 @@ public class LevelManager : MonoBehaviour
                 for (int j = 0; j < innerCount; j++)
                 {
                     //GameObject obj = wrapper.list[j];
-                    GameObject obj = Instantiate(wrapper.list[j], new Vector3(xPos, 2 * (j+1), zPos), Quaternion.identity, containerObject.transform);
+                    GameObject obj = Instantiate(wrapper.list[j], new Vector3(xPos, 2 * (j + 1), zPos), Quaternion.identity, containerObject.transform);
                     //ContainerList.Add(obj);
                     obj.transform.localScale = wrapper.list[j].transform.localScale;
 
@@ -85,9 +94,8 @@ public class LevelManager : MonoBehaviour
             //Container container = containerObject.GetComponent<Container>();
             //container.maxCapacity = level.maxCapacityPerContainer;
         }
-
-
     }
+
     public void SpawnBoxes(int m, int n)
     {
         float spacing = 2f; // Spacing between boxes along the x-axis
