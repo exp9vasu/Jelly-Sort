@@ -71,6 +71,17 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void ContainerPrefabBC(GameObject gameObject)
+    {
+        int maxCap = levels[CurrentLevel].maxCapacityPerContainer;
+
+        if (maxCap > 3)
+        {
+            BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+            boxCollider.size = new Vector3(boxCollider.size.x, boxCollider.size.y + (maxCap - 3)*2.1f, boxCollider.size.z);
+        }
+    }
+
     public void LevelRowGenerator(int start, int row, int levelIndex, int ZPos)
     {
 
@@ -89,6 +100,9 @@ public class LevelManager : MonoBehaviour
             //zPos = ((row + start) - 1) * -zSpacing / 2 + i * zSpacing;
 
             GameObject containerObject = Instantiate(containerPrefab, new Vector3(xPos, 0, zPos), Quaternion.identity, containerParent.transform);
+
+            ContainerPrefabBC(containerObject);
+            
             ContainerList.Add(containerObject);
 
             //for (int j = 0; j < outerCount; j++)

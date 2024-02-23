@@ -116,6 +116,7 @@ MonoBehaviour:
   ContainerStack: []
   FilledWithSame: 0
   ConfettiPrefab: {fileID: 8608122771980964451}
+  tempList: []
 --- !u!1 &7595692050308250588
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +214,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 5.4, z: 1.5}
+  m_Size: {x: 1.5, y: 3.4, z: 1.5}
   m_Center: {x: 0, y: 1.4, z: 0}
 --- !u!114 &-1906718767817498824
 MonoBehaviour:
@@ -232,6 +233,7 @@ MonoBehaviour:
   ContainerStack: []
   FilledWithSame: 0
   ConfettiPrefab: {fileID: 8608122771980964451}
+  tempList: []
 --- !u!1001 &8608122771981129357
 PrefabInstance:
   m_ObjectHideFlags: 0

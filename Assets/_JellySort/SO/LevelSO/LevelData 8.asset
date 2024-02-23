@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4b3660cc2a85145907bec637bed578, type: 3}
+  m_Name: LevelData 8
+  m_EditorClassIdentifier: 
+  maxCapacityPerContainer: 4
+  numberOfContainers: 0
+  m: 4
+  n: 0
+  o: 0
+  LevelInfo:
+  - list:
+    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
+    - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
+    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
+    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
+  - list:
+    - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
+    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
+    - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
+    - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
+  - list: []
+  - list: []
