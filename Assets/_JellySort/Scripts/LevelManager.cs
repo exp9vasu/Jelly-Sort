@@ -99,9 +99,12 @@ public class LevelManager : MonoBehaviour
                 for (int j = 0; j < innerCount; j++)
                 {
                     //GameObject obj = wrapper.list[j];
-                    GameObject obj = Instantiate(wrapper.list[j], new Vector3(xPos, 2 * (j + 1), zPos), Quaternion.identity, containerObject.transform);
-                    
-                    if(wrapper.list[j].GetComponent<Container>())
+                    GameObject obj = Instantiate(wrapper.list[j], new Vector3(xPos, 3 * (j + 1), zPos), Quaternion.identity, containerObject.transform);
+                    //GameObject obj = Instantiate(wrapper.list[j], new Vector3(xPos, 0.5f+j*5, zPos), Quaternion.identity, containerObject.transform);
+
+                    LeanTween.move(obj, new Vector3(xPos, 0.1f + j , zPos), 1);
+
+                    if (wrapper.list[j].GetComponent<Container>())
                     {
                         ContainerList.Add(wrapper.list[j]);
                     }

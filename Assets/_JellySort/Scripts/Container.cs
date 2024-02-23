@@ -98,11 +98,11 @@ public class Container : MonoBehaviour
 
         if (ContainerStack.Count >= LevelManager.instance.levels[LevelManager.instance.CurrentLevel].maxCapacityPerContainer)
         {
-            if (selectedCube)
-            {
-                selectedCube.GetComponent<Rigidbody>().isKinematic = false;
-                selectedCube = null;
-            }
+            //if (selectedCube)
+            //{
+            //    selectedCube.GetComponent<Rigidbody>().isKinematic = false;
+            //    selectedCube = null;
+            //}
             return;
             
         }
@@ -159,6 +159,8 @@ public class Container : MonoBehaviour
 
     }
 
+    public List<GameObject> tempList = new List<GameObject>();
+
     public void CheckSameIndex(List<GameObject> cubes)
     {
         // If there are no cubes, return false
@@ -175,21 +177,27 @@ public class Container : MonoBehaviour
         for (int i = 1; i < cubes.Count; i++)
         {
             CubeScript cubeScript = cubes[i].GetComponentInParent<CubeScript>();
-            // Check if the cube has CubeScript attached and CubeIndex is present
-            if (cubeScript != null && cubeScript.CubeIndex == firstCubeIndex 
-                && ContainerStack.Count == LevelManager.instance.levels[LevelManager.instance.CurrentLevel].maxCapacityPerContainer)
-            {
-                // If any cube has a different index, return false
-                //return false;
-                FilledWithSame = true;
-                //Invoke("ShootPrefab", 1);
-            }
-            else
+
+
+            if (cubeScript.CubeIndex != firstCubeIndex)
             {
                 FilledWithSame = false;
+                return;
                 //ConfettiPrefab.SetActive(false);
 
             }
+            // Check if the cube has CubeScript attached and CubeIndex is present
+            else if (cubeScript != null && cubeScript.CubeIndex == firstCubeIndex)
+            {
+                if (ContainerStack.Count == LevelManager.instance.levels[LevelManager.instance.CurrentLevel].maxCapacityPerContainer)
+                {
+                    // If any cube has a different index, return false
+                    //return false;
+                    FilledWithSame = true;
+                    //Invoke("ShootPrefab", 1);
+                }
+            }
+           
         }
 
         // All cubes have the same index
