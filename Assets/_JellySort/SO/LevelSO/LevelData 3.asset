@@ -15,30 +15,15 @@ MonoBehaviour:
   maxCapacityPerContainer: 3
   numberOfContainers: 0
   m: 3
-  n: 3
-  o: 3
+  n: 0
+  o: 0
   LevelInfo:
   - list:
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
     - {fileID: 6905998299435438118, guid: 7388f422ded3ebe40991d518f2320c4d, type: 3}
-    - {fileID: 6905998299435438118, guid: 7388f422ded3ebe40991d518f2320c4d, type: 3}
-  - list:
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
+    - {fileID: 6905998299435438118, guid: bd48ecafed122ef438b61be30a575531, type: 3}
     - {fileID: 6905998299435438118, guid: 7388f422ded3ebe40991d518f2320c4d, type: 3}
   - list: []
-  - list: []
   - list:
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
+    - {fileID: 6905998299435438118, guid: bd48ecafed122ef438b61be30a575531, type: 3}
+    - {fileID: 6905998299435438118, guid: bd48ecafed122ef438b61be30a575531, type: 3}
     - {fileID: 6905998299435438118, guid: 7388f422ded3ebe40991d518f2320c4d, type: 3}
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
-  - list: []
-  - list:
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
-    - {fileID: 6905998299435438118, guid: 0303c6aaf424b864a845e0a284c4595d, type: 3}
-    - {fileID: 6905998299435438118, guid: 0303c6aaf424b864a845e0a284c4595d, type: 3}
-  - list: []
-  - list:
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
-    - {fileID: 6905998299435438118, guid: 7388f422ded3ebe40991d518f2320c4d, type: 3}
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}

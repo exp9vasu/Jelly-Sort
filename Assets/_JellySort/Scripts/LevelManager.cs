@@ -17,8 +17,9 @@ public class LevelManager : MonoBehaviour
     public GameObject SelectedContainer;
     public GameObject SelectedCube;
     //public List<GameObject> ContainerSequence = new List<GameObject>();
-    public int CurrentLevel = 0;
+    public int CurrentLevel;
     public List<GameObject> ContainerList = new List<GameObject>();
+    public bool GameOver;
 
     private void Awake()
     {
@@ -30,7 +31,12 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        GameOver = false;
+
+        CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
+
         LoadLevel(CurrentLevel);
+        UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel+1).ToString() ;
     }
 
     float spacing = 2f;
@@ -49,7 +55,8 @@ public class LevelManager : MonoBehaviour
         int n = levels[CurrentLevel].n;
         int o = levels[CurrentLevel].o;
 
-        
+       
+
         LevelRowGenerator(0, m, levelIndex, -4-zSpacing);
         LevelRowGenerator(m, m+n, levelIndex, -4);
         LevelRowGenerator(m+n, m+n+o, levelIndex, -4+zSpacing);
@@ -148,6 +155,11 @@ public class LevelManager : MonoBehaviour
 
     void CheckIsFilledSame(List<GameObject> elements)
     {
+        if (GameOver)
+        {
+            return;
+        }
+
         // If the list is empty, return
         if (elements.Count == 0)
         {
@@ -167,8 +179,66 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+        GameOver = true;
+        Invoke("ShowWin",2);
+    }
+
+    public void ShowWin()
+    {
+        if (!GameOver)
+        {
+            return;
+        }
+
         // If all elements have isFilledSame set to true, print "Game Over!"
+        UIManager.instance.LivePanel.SetActive(false);
+        UIManager.instance.WinPanel.SetActive(true);
         Debug.Log("Game Over!");
     }
 
+    public void LoadNextLevel()
+    {
+        ResetLevel();
+
+        GameOver = false;
+
+        int temp = PlayerPrefs.GetInt("LevelIndex");
+        PlayerPrefs.SetInt("LevelIndex", temp+1);
+
+        CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
+
+        LoadLevel(CurrentLevel);
+        UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel + 1).ToString();
+        
+        UIManager.instance.LivePanel.SetActive(true);
+        UIManager.instance.WinPanel.SetActive(false);
+
+    }
+
+    public void RetryLevel()
+    {
+        ResetLevel();
+
+        GameOver = false;
+
+        CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
+
+        LoadLevel(CurrentLevel);
+        UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel + 1).ToString();
+
+        UIManager.instance.LivePanel.SetActive(true);
+        UIManager.instance.WinPanel.SetActive(false);
+
+    }
+
+    public void ResetLevel()
+    {
+        // Destroy all existing containers
+        foreach (GameObject container in ContainerList)
+        {
+            Destroy(container);
+        }
+        ContainerList.Clear(); // Clear the list of containers
+        newList.Clear();
+    }
 }

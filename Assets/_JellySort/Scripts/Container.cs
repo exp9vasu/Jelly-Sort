@@ -9,6 +9,7 @@ public class Container : MonoBehaviour
     public int maxCapacity;
     public List<GameObject> ContainerStack = new List<GameObject>();
     public bool FilledWithSame;
+    public GameObject ConfettiPrefab;
 
     // Method to add a cube to the container
     public void AddCube()
@@ -58,6 +59,11 @@ public class Container : MonoBehaviour
 
     public void PopCube()
     {
+        if (LevelManager.instance.SelectedCube)
+        {
+            return;
+        }
+
         {
             print("POP");
 
@@ -66,8 +72,8 @@ public class Container : MonoBehaviour
             //ContainerStack[ContainerStack.Count - 1].transform.GetComponent<Rigidbody>().isKinematic = true;
             selectedCube.transform.GetComponent<Rigidbody>().isKinematic = true;
 
-            LeanTween.move(ContainerStack[ContainerStack.Count - 1], new Vector3(selectedCube.transform.position.x, 
-                /*transform.position.y + 5*/4, selectedCube.transform.position.z), 1);
+            LeanTween.move(ContainerStack[ContainerStack.Count - 1], new Vector3(selectedCube.transform.position.x,
+               LevelManager.instance.levels[LevelManager.instance.CurrentLevel].maxCapacityPerContainer + 1, selectedCube.transform.position.z), 1);
         }
     }
     GameObject selectedCube;
@@ -76,7 +82,13 @@ public class Container : MonoBehaviour
 
         if (ContainerStack.Count >= LevelManager.instance.levels[LevelManager.instance.CurrentLevel].maxCapacityPerContainer)
         {
+            if (selectedCube)
+            {
+                selectedCube.GetComponent<Rigidbody>().isKinematic = false;
+                selectedCube = null;
+            }
             return;
+            
         }
 
         {
@@ -90,7 +102,7 @@ public class Container : MonoBehaviour
             //{
             LeanTween.move(
                 //selectedCube.gameObject, new Vector3(selectedCube.transform.position.x, selectedCube.transform.position.y + 5, selectedCube.transform.position.z), 1).
-                selectedCube.gameObject, new Vector3(transform.position.x, /*transform.position.y+5*/4,transform.position.z), 1)
+                selectedCube.gameObject, new Vector3(transform.position.x, LevelManager.instance.levels[LevelManager.instance.CurrentLevel].maxCapacityPerContainer + 1, transform.position.z), 1)
                 .setOnComplete(FinalCubeDeposit);
             //}
             //else
@@ -122,8 +134,9 @@ public class Container : MonoBehaviour
                 //CheckSameIndex(ContainerStack);
 
                 LevelManager.instance.CheckGameState();
+                //CheckSameBox();
 
-                Invoke("AdjustCubes", 1);
+                Invoke("AdjustCubes", 2.5f);
 
             }
         }
@@ -153,11 +166,13 @@ public class Container : MonoBehaviour
                 // If any cube has a different index, return false
                 //return false;
                 FilledWithSame = true;
-
+                //Invoke("ShootPrefab", 1);
             }
             else
             {
                 FilledWithSame = false;
+                //ConfettiPrefab.SetActive(false);
+
             }
         }
 
@@ -169,7 +184,17 @@ public class Container : MonoBehaviour
 
     private void Update()
     {
-                CheckSameIndex(ContainerStack);
+        CheckSameBox();
+    }
+
+    public void CheckSameBox()
+    {
+        CheckSameIndex(ContainerStack);
+
+        if (LevelManager.instance.GameOver && ContainerStack.Count > 0)
+        {
+            Invoke("ShootPrefab", 1);
+        }
     }
 
     public void AdjustCubes()
@@ -179,6 +204,11 @@ public class Container : MonoBehaviour
             LeanTween.move(ContainerStack[i].gameObject, new Vector3(transform.position.x, ContainerStack[i].transform.position.y, transform.position.z), 1);
 
         }
+    }
+
+    public void ShootPrefab()
+    {
+        ConfettiPrefab.SetActive(true);
     }
 }
 
