@@ -153,12 +153,12 @@ public class Container : MonoBehaviour
         }
 
         // Get the index of the first cube
-        int firstCubeIndex = cubes[0].GetComponent<CubeScript>().CubeIndex;
+        int firstCubeIndex = cubes[0].GetComponentInParent<CubeScript>().CubeIndex;
 
         // Check if all cubes have the same index
         for (int i = 1; i < cubes.Count; i++)
         {
-            CubeScript cubeScript = cubes[i].GetComponent<CubeScript>();
+            CubeScript cubeScript = cubes[i].GetComponentInParent<CubeScript>();
             // Check if the cube has CubeScript attached and CubeIndex is present
             if (cubeScript != null && cubeScript.CubeIndex == firstCubeIndex 
                 && ContainerStack.Count == LevelManager.instance.levels[LevelManager.instance.CurrentLevel].maxCapacityPerContainer)
