@@ -11,6 +11,12 @@ public class Container : MonoBehaviour
     public bool FilledWithSame;
     public GameObject ConfettiPrefab;
 
+    private void Start()
+    {
+        //transform.GetComponent<BoxCollider>().enabled = false;
+        //Invoke("EnableBoxCollider", 3);    
+    }
+
     // Method to add a cube to the container
     public void AddCube()
     {
@@ -38,8 +44,18 @@ public class Container : MonoBehaviour
         }
     }
 
+    void EnableBoxCollider()
+    {
+        transform.GetComponent<BoxCollider>().enabled = true;
+    }
+
     private void OnMouseDown()
     {
+        if (LevelManager.instance.GameOver)
+        {
+            return;
+        }
+
         //Debug.Log("Stack Clicked");
         //if(LevelManager.instance.SelectedContainer == null)
         {
@@ -65,7 +81,7 @@ public class Container : MonoBehaviour
         }
 
         {
-            print("POP");
+            //print("POP");
 
             LevelManager.instance.SelectedCube = ContainerStack[ContainerStack.Count - 1].gameObject;
             selectedCube = ContainerStack[ContainerStack.Count - 1].gameObject;
@@ -95,7 +111,7 @@ public class Container : MonoBehaviour
 
             selectedCube = LevelManager.instance.SelectedCube;
 
-            print("INSERT");
+            //print("INSERT");
             ContainerStack.Add(selectedCube);
 
             //if (LevelManager.instance.ContainerSequence.Count < 2)

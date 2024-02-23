@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public int CurrentLevel;
     public List<GameObject> ContainerList = new List<GameObject>();
     public bool GameOver;
+    private int RepeatingLevel=3;
 
     private void Awake()
     {
@@ -34,6 +35,13 @@ public class LevelManager : MonoBehaviour
         GameOver = false;
 
         CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
+
+        //Handle Level Limit Case
+        if (CurrentLevel > levels.Length-1)
+        {
+            PlayerPrefs.SetInt("LevelIndex", RepeatingLevel);
+            CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
+        }
 
         LoadLevel(CurrentLevel);
         UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel+1).ToString() ;
@@ -92,7 +100,11 @@ public class LevelManager : MonoBehaviour
                 {
                     //GameObject obj = wrapper.list[j];
                     GameObject obj = Instantiate(wrapper.list[j], new Vector3(xPos, 2 * (j + 1), zPos), Quaternion.identity, containerObject.transform);
-                    //ContainerList.Add(obj);
+                    
+                    if(wrapper.list[j].GetComponent<Container>())
+                    {
+                        ContainerList.Add(wrapper.list[j]);
+                    }
                     obj.transform.localScale = wrapper.list[j].transform.localScale;
 
                 }
@@ -201,6 +213,13 @@ public class LevelManager : MonoBehaviour
         ResetLevel();
 
         GameOver = false;
+
+        //Handle Level Limit Case
+        if (CurrentLevel > levels.Length - 2)
+        {
+            PlayerPrefs.SetInt("LevelIndex", RepeatingLevel - 1);
+            CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
+        }
 
         int temp = PlayerPrefs.GetInt("LevelIndex");
         PlayerPrefs.SetInt("LevelIndex", temp+1);
