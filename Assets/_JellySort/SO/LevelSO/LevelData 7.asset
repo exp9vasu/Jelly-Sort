@@ -12,21 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4b3660cc2a85145907bec637bed578, type: 3}
   m_Name: LevelData 7
   m_EditorClassIdentifier: 
-  maxCapacityPerContainer: 4
+  maxCapacityPerContainer: 3
   numberOfContainers: 0
-  m: 4
-  n: 0
+  m: 2
+  n: 3
   o: 0
   LevelInfo:
   - list:
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
     - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
+    - {fileID: 6905998299435438118, guid: f519761061c3da2438a4df0694610ecf, type: 3}
+    - {fileID: 6905998299435438118, guid: 0303c6aaf424b864a845e0a284c4595d, type: 3}
+  - list: []
   - list:
-    - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
-    - {fileID: 6905998299435438118, guid: 9642a457fbcfc0e43a1d1df9b5b57237, type: 3}
-    - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
+    - {fileID: 6905998299435438118, guid: 0303c6aaf424b864a845e0a284c4595d, type: 3}
+    - {fileID: 6905998299435438118, guid: f519761061c3da2438a4df0694610ecf, type: 3}
     - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
   - list: []
-  - list: []
+  - list:
+    - {fileID: 6905998299435438118, guid: f519761061c3da2438a4df0694610ecf, type: 3}
+    - {fileID: 6905998299435438118, guid: c7bb23746c3e5a845bd87b8c0f9b69c4, type: 3}
+    - {fileID: 6905998299435438118, guid: 0303c6aaf424b864a845e0a284c4595d, type: 3}
