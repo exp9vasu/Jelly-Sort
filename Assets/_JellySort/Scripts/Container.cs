@@ -206,10 +206,10 @@ public class Container : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        CheckSameBox();
-    }
+    //private void Update()
+    //{
+    //    //CheckSameBox();
+    //}
 
     public void CheckSameBox()
     {
@@ -233,6 +233,48 @@ public class Container : MonoBehaviour
     public void ShootPrefab()
     {
         ConfettiPrefab.SetActive(true);
+    }
+
+    private void Update()
+    {
+        CheckSameBox();
+
+        // Check if there is any touch input
+        if (Input.touchCount > 0)
+        {
+            // Loop through all the touches
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Touch touch = Input.GetTouch(i);
+
+                // Check if the touch phase is began
+                if (touch.phase == TouchPhase.Began)
+                {
+                    // Handle the touch
+                    HandleTouch(touch.position);
+                }
+            }
+        }
+    }
+
+    void HandleTouch(Vector2 touchPosition)
+    {
+        // Convert touch position to a ray from the camera
+        Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+        RaycastHit hit;
+
+        // Perform the raycast
+        if (Physics.Raycast(ray, out hit))
+        {
+            // Check if the object hit has a BoxCollider
+            Container container = hit.collider.GetComponent<Container>();
+            if (container == this)
+            {
+                // Object with BoxCollider is clicked, you can perform actions here
+                Debug.Log("Object with BoxCollider clicked: " + hit.collider.gameObject.name);
+                OnMouseDown();
+            }
+        }
     }
 }
 
