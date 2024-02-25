@@ -20,7 +20,8 @@ public class LevelManager : MonoBehaviour
     public int CurrentLevel;
     public List<GameObject> ContainerList = new List<GameObject>();
     public bool GameOver;
-    private int RepeatingLevel=3;
+    public int RepeatingLevel;
+    public int LevelNum;
 
     private void Awake()
     {
@@ -41,10 +42,12 @@ public class LevelManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("LevelIndex", RepeatingLevel);
             CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
+            //CurrentLevel = RepeatingLevel;
         }
 
         LoadLevel(CurrentLevel);
-        UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel+1).ToString() ;
+        LevelNum = PlayerPrefs.GetInt("LeelNum");
+        UIManager.instance.LevelIndex.text = "LEVEL " + (LevelNum+1).ToString() ;
     }
 
     float spacing = 2f;
@@ -244,8 +247,13 @@ public class LevelManager : MonoBehaviour
         CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
 
         LoadLevel(CurrentLevel);
-        UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel + 1).ToString();
-        
+        //UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel + 1).ToString();
+        LevelNum = PlayerPrefs.GetInt("LevelNum");
+        LevelNum++;
+        PlayerPrefs.SetInt("LevelNum", LevelNum);
+
+        UIManager.instance.LevelIndex.text = "LEVEL " + (PlayerPrefs.GetInt("LevelNum")+1).ToString();
+
         UIManager.instance.LivePanel.SetActive(true);
         UIManager.instance.WinPanel.SetActive(false);
 
@@ -260,7 +268,8 @@ public class LevelManager : MonoBehaviour
         CurrentLevel = PlayerPrefs.GetInt("LevelIndex");
 
         LoadLevel(CurrentLevel);
-        UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel + 1).ToString();
+        UIManager.instance.LevelIndex.text = "LEVEL " + (PlayerPrefs.GetInt("LevelNum")+1).ToString();
+        //UIManager.instance.LevelIndex.text = "LEVEL " + (CurrentLevel + 1).ToString();
 
         UIManager.instance.LivePanel.SetActive(true);
         UIManager.instance.WinPanel.SetActive(false);

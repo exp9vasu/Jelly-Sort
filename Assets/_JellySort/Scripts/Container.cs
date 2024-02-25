@@ -86,6 +86,9 @@ public class Container : MonoBehaviour
             LevelManager.instance.SelectedCube = ContainerStack[ContainerStack.Count - 1].gameObject;
             selectedCube = ContainerStack[ContainerStack.Count - 1].gameObject;
             //ContainerStack[ContainerStack.Count - 1].transform.GetComponent<Rigidbody>().isKinematic = true;
+            selectedCube.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            selectedCube.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
             selectedCube.transform.GetComponent<Rigidbody>().isKinematic = true;
 
             LeanTween.move(ContainerStack[ContainerStack.Count - 1], new Vector3(selectedCube.transform.position.x,
@@ -93,6 +96,17 @@ public class Container : MonoBehaviour
         }
     }
     GameObject selectedCube;
+
+    public void DropBack()
+    {
+        if (LevelManager.instance.SelectedContainer.GetComponent<Container>() == this && LevelManager.instance.SelectedCube !=null)
+        {
+            LevelManager.instance.SelectedCube.GetComponent<Rigidbody>().isKinematic = false;
+            LevelManager.instance.SelectedCube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
+            LevelManager.instance.SelectedCube = null;
+        }
+    }
+
     public void InsertCube()
     {
 
@@ -103,6 +117,7 @@ public class Container : MonoBehaviour
             //    selectedCube.GetComponent<Rigidbody>().isKinematic = false;
             //    selectedCube = null;
             //}
+            DropBack();
             return;
             
         }
@@ -112,6 +127,7 @@ public class Container : MonoBehaviour
             if(LevelManager.instance.SelectedCube.GetComponentInParent<CubeScript>().CubeIndex 
                 != ContainerStack[ContainerStack.Count - 1].GetComponentInParent<CubeScript>().CubeIndex)
             {
+                DropBack();
                 return;
             }
         }

@@ -2497,9 +2497,11 @@ MonoBehaviour:
     type: 3}
   SelectedContainer: {fileID: 0}
   SelectedCube: {fileID: 0}
-  CurrentLevel: 3
+  CurrentLevel: 2
   ContainerList: []
   GameOver: 0
+  RepeatingLevel: 2
+  LevelNum: 0
   newList: []
 --- !u!1 &1340456322
 GameObject:
