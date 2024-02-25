@@ -107,6 +107,15 @@ public class Container : MonoBehaviour
             
         }
 
+        if(ContainerStack.Count > 0)
+        {
+            if(LevelManager.instance.SelectedCube.GetComponentInParent<CubeScript>().CubeIndex 
+                != ContainerStack[ContainerStack.Count - 1].GetComponentInParent<CubeScript>().CubeIndex)
+            {
+                return;
+            }
+        }
+
         {
 
             selectedCube = LevelManager.instance.SelectedCube;
